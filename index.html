@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnippyVault</title>
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=7IASjmQaPyfb&format=png&color=000000" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <section id="login-section" class="valign-wrapper fullscreen">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <div class="card">
+                        <div class="card-content center-align">
+                            <span class="card-title">登入 SnippyVault</span>
+                            <div class="input-field">
+                                <input type="text" id="username-input" placeholder="輸入使用者名稱">
+                                <label for="username-input">使用者名稱</label>
+                            </div>
+                            <button id="login-btn" class="btn waves-effect waves-light">登入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="app-section" class="hide">
+        <nav class="light-blue darken-4">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">SnippyVault</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><button id="logout-btn" class="btn-flat white-text waves-effect waves-light">登出</button></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container" style="margin-top: 20px;">
+            <div class="row">
+                <div class="col s12 m8">
+                    <div class="input-field">
+                        <input type="text" id="search-input" placeholder="搜尋標題、內容或標籤...">
+                        <label for="search-input">搜尋 Snippet</label>
+                    </div>
+                    <p>
+                        <strong>篩選標籤:</strong>
+                        <button id="reset-tags-btn" class="btn-small waves-effect waves-light grey">清除篩選</button>
+                    </p>
+                    <div id="tags-container" class="chips-container">
+                        </div>
+                </div>
+                <div class="col s12 m4 right-align">
+                    <button id="add-snippet-btn" class="btn-large waves-effect waves-light modal-trigger" data-target="snippet-modal">
+                        <i class="material-icons left">add</i>新增 Snippet
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <table class="striped responsive-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;"></th> <th>標題</th> <th>內容</th>
+                                <th>標籤</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="snippets-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="snippet-modal" class="modal">
+        <div class="modal-content">
+            <h4><span id="modal-title">新增 Snippet</span></h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" id="snippet-title" placeholder="輸入標題">
+                            <label for="snippet-title">標題</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="snippet-content" class="materialize-textarea"></textarea>
+                            <label for="snippet-content">Snippet 內容</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <div id="snippet-tags" class="chips chips-placeholder"></div>
+                            <label for="snippet-tags">標籤</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="save-snippet-btn" class="modal-close waves-effect waves-green btn-flat">儲存</a>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">取消</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="js/script.js?v=0.0.3"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+/* css/style.css */
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+#login-section {
+    height: 100vh;
+}
+
+/* Materialize 表單欄位調整 */
+.input-field label {
+    font-size: 1.1rem;
+    color: #333;
+}
+.input-field input[type="text"]:focus + label,
+.input-field textarea:focus + label {
+    color: #2196f3 !important; /* Materialize primary blue */
+}
+.input-field input[type="text"]:focus,
+.input-field textarea:focus {
+    border-bottom: 1px solid #2196f3 !important;
+    box-shadow: 0 1px 0 0 #2196f3 !important;
+}
+
+/* Chips 容器樣式 */
+.chips-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 5px 0; /* 增加一些內邊距 */
+}
+
+/* 個別 Chip 樣式 */
+.chip {
+    display: inline-block;
+    padding: 0 12px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+    background-color: #e4e4e4;
+    border-radius: 16px;
+    margin-right: 5px;
+    margin-bottom: 5px; /* 避免換行時擠壓 */
+    cursor: pointer; /* 顯示可點擊 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 添加過渡效果 */
+    color: #424242;
+}
+
+.chip:hover {
+    background-color: #d1d1d1;
+}
+
+/* 選中狀態的 Chip 樣式 */
+.chip.selected {
+    background-color: #2196f3; /* Materialize primary blue */
+    color: white;
+    font-weight: bold;
+}
+
+.chip.selected:hover {
+    background-color: #1976d2; /* Darker blue on hover for selected chip */
+}
+
+
+/* Snippet Table 調整 */
+.striped > tbody > tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.03); /* Materialize default */
+}
+
+.striped > tbody > tr > td {
+    padding: 12px 5px; /* 調整單元格內邊距，特別是左右 */
+    white-space: normal; /* 允許內容換行 */
+    word-break: break-word; /* 強制單詞內換行 */
+}
+
+/* 按鈕組樣式 */
+.btn-group button {
+    margin-right: 5px;
+    margin-bottom: 5px; /* 為了手機版換行時不擠壓 */
+    /* 確保按鈕不會過度壓縮 */
+    min-width: 60px;
+    padding: 0 8px; /* 調整內邊距 */
+    font-size: 0.75rem; /* 調整字體大小 */
+    line-height: 28px; /* 調整行高 */
+    height: 28px; /* 調整高度 */
+}
+
+/* 拖曳圖示樣式 */
+.drag_indicator {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* SortableJS 拖曳時的 ghost 樣式 */
+.dragging {
+    opacity: 0.5;
+    background-color: #f5f5f5;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 模態框標題居中 */
+.modal-content h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* RWD 調整 */
+@media screen and (max-width: 992px) {
+    /* 針對平板和手機 */
+    nav .brand-logo {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #app-section .container {
+        padding: 0 10px; /* 左右減少一些內邊距 */
+    }
+
+    /* 確保表格在小螢幕上不會橫向滾動 */
+    .responsive-table {
+        width: 100%;
+        border-collapse: collapse; /* 移除單元格間距 */
+        display: block; /* 讓 table 表現得像 div */
+        overflow-x: auto; /* 允許橫向滾動，但我們後面會處理讓它垂直堆疊 */
+        -webkit-overflow-scrolling: touch; /* iOS 流暢滾動 */
+    }
+
+    /* 針對手機版，讓表格的每一行變成垂直堆疊 */
+    .responsive-table thead,
+    .responsive-table tbody,
+    .responsive-table th,
+    .responsive-table td,
+    .responsive-table tr {
+        display: block; /* 將所有元素轉換為塊級元素 */
+    }
+
+    .responsive-table thead tr {
+        position: absolute;
+        top: -9999px; /* 隱藏表頭 */
+        left: -9999px;
+    }
+
+    .responsive-table tr {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    }
+
+    .responsive-table td {
+        border: none; /* 移除單元格邊框 */
+        position: relative;
+        padding-left: 50% !important; /* 為偽元素留空間 */
+        text-align: left !important;
+        white-space: normal; /* 允許內容換行 */
+    }
+
+    .responsive-table td:before {
+        /* 用偽元素來顯示標頭 */
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    /* 為每個 td 設置 data-label */
+    .responsive-table tr td:nth-of-type(1):before { content: "排序:"; }
+    .responsive-table tr td:nth-of-type(2):before { content: "標題:"; }
+    .responsive-table tr td:nth-of-type(3):before { content: "內容:"; }
+    .responsive-table tr td:nth-of-type(4):before { content: "標籤:"; }
+    .responsive-table tr td:nth-of-type(5):before { content: "操作:"; }
+
+    /* 調整操作按鈕的顯示 */
+    .responsive-table td:nth-of-type(5) {
+        text-align: center !important;
+    }
+    .responsive-table td:nth-of-type(5) .btn-group {
+        display: flex;
+        flex-wrap: wrap; /* 允許按鈕換行 */
+        justify-content: center;
+        gap: 5px; /* 按鈕之間的間距 */
+    }
+}

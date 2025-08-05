@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     M.AutoInit(); // 初始化 Materialize Components (Modal, Chips, etc.)
 
-    const API_BASE_URL = 'https://wish-list-local.m1t2.link/backend/snippyvault/v1'; 
+    const API_BASE_URL = window.SNIPPYVAULT_CONFIG.API_BASE_URL;
 
     // DOM 元素
     const loginSection = document.getElementById('login-section');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const result = await response.json();
             if (!result.success) {
-                M.toast({ html: `儲存排序失敗: ${result.message || '未知錯誤'}`, classes: 'red' });
+                M.toast({ html: `儲存排���失敗: ${result.message || '未知錯誤'}`, classes: 'red' });
             }
             // 不管成功或失敗，都重新載入一次確保資料同步
             await loadSnippets();
